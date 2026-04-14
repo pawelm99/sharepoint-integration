@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SharePoint.Integration.Core/SharePoint.Integration.Core.csproj" />
+  <Project Path="SharePoint.Integration.SharePoint/SharePoint.Integration.SharePoint.csproj" />
+  <Project Path="SharePoint.Integration.WebApi/SharePoint.Integration.WebApi.csproj" />
+</Solution>

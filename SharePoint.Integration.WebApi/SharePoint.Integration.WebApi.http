@@ -1,0 +1,6 @@
+@SharePoint.Integration.WebApi_HostAddress = http://localhost:5072
+
+GET {{SharePoint.Integration.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
