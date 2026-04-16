@@ -3,10 +3,8 @@ using SharePoint.Integration.WebApi.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Configuration.AddAzureKeyVaultConfiguration(builder.Configuration);
 builder.Host.ConfigureServices((context, services) =>
 {
@@ -18,12 +16,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(cfg =>
+    {
+        cfg.OAuthClientId(app.Configuration["SharePointIntegration:ClientId"]);
+        cfg.RoutePrefix = "swagger";
+        cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "SharePoint Integration");
+    });
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseAuthentication();    
 app.UseAuthorization();
 
 app.MapControllers();
